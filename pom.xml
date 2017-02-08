@@ -54,7 +54,7 @@
   			<version>9.4-1201-jdbc4</version>
 		</dependency>
 		
-		<!-- By default, Tomcat container doesn’t contain any jstl library. 
+		<!-- By default, Tomcat container doesn’t contain any jstl (Java Standard Tag Library) library. 
 		To fix it, declares jstl.jar in your Maven pom.xml file. -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -62,7 +62,9 @@
 			<version>1.2</version>
   		</dependency>
   		
-  		<!-- Niezbędny do poprawnego renderingu i konfiguracji DispatcherServletu -->
+  		<!-- Niezbędny do poprawnego renderingu i konfiguracji DispatcherServletu 
+  		Apache Jasper to Silnik JSP 2 implementujący specyfikację Java Server Pages 2 
+  		Domyślnie osadzony Tomcat w Spring Bootcie go nie ma-->
   		<dependency>
         	<groupId>org.apache.tomcat.embed</groupId>
         	<artifactId>tomcat-embed-jasper</artifactId>

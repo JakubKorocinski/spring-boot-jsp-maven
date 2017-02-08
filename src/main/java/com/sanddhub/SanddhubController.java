@@ -3,6 +3,7 @@ package com.sanddhub;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +14,9 @@ import com.sanddhub.services.HelloWorldService;
 import com.sanddhub.services.UserDAOImpl;
 
 @Controller
-public class SanddhubController {
+public class SanddhubController implements ErrorController {
+
+	private static final String ERRO_PAGE_PATH = "/error";
 
 	// Wire the UserDao used inside this controller.
 	@Autowired
@@ -43,6 +46,11 @@ public class SanddhubController {
 		return "index";
 	}
 
+	@RequestMapping("/test")
+	public String callTestPage() {
+		return "test";
+	}
+
 	@RequestMapping(value = "/hello/{name:.+}", method = RequestMethod.GET)
 	public ModelAndView hello(@PathVariable("name") String name) {
 
@@ -56,6 +64,16 @@ public class SanddhubController {
 
 		return model;
 
+	}
+
+	@RequestMapping(value = ERRO_PAGE_PATH)
+	public String error() {
+		return "errorPage";
+	}
+
+	@Override
+	public String getErrorPath() {
+		return ERRO_PAGE_PATH;
 	}
 
 	// @RequestMapping("/")
